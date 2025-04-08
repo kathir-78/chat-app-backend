@@ -38,7 +38,6 @@ const validateUserLogin = (req, res, next)=> {
     if( !validator.isEmail(emailId)) {
         return res.status(400).json({ message: "Invalid email format" });
     }
-    
     next()
 }
 
