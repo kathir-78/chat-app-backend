@@ -1,17 +1,17 @@
 import cookieParser from 'cookie-parser';
 import express from 'express';
 import 'dotenv/config'
-import connectDB from './config/configDb.js';   // here in 
+import connectDB from './config/configDb.js';  
+import userRoute from './routes/authRoute.js';
 
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/', (req, res)=> {res.send('welcome')});
+// app.use('/', (req, res)=> {res.send('welcome')});
 
-
-app.get('/');
+app.use('/', userRoute);
 
 connectDB()
     .then( ()=> {

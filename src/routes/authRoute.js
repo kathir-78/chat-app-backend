@@ -1,14 +1,17 @@
 import express from 'express'
+import { login, logout, signUp } from '../controllers/authController.js';
+import { validateUserCreation, validateUserLogin } from '../utils/validateUser.js';
+
 
 const userRoute = express.Router()
 
-// login
-userRoute.post('/auth/login');
+// login router
+userRoute.post('/auth/login', validateUserLogin, login);
 
-// signUp
-userRoute.post('/auth/signup');
+// signUp router
+userRoute.post('/auth/signup', validateUserCreation, signUp);
 
-// logout
-userRoute.post('/auth/logout');
+// logout router
+userRoute.post('/auth/logout', logout);
 
 export default userRoute
