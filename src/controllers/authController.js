@@ -19,7 +19,7 @@ const login =  async(req, res) => {
             return res.status(401).json({message: "Invalid Credentials"});
         }
 
-        const jwttoken = jwt.sign({FirstName: userData.firstName, email: userData.emailId}, process.env.JWT_SECRETE_KEY, {expiresIn: '7d'});
+        const jwttoken = jwt.sign({FirstName: userData.firstName, emailId: userData.emailId, id: userData._id}, process.env.JWT_SECRETE_KEY, {expiresIn: '7d'});
 
         const {firstName, lastName } = userData;
         res.status(200)
@@ -63,4 +63,15 @@ const login =  async(req, res) => {
     }
 }
 
-export  { login, signUp, logout };  
+//view profile
+const profile = async(req, res) => {
+    try {
+        const { firstName, lastName, emailId } = req.user;
+
+        res.status(200).json({firstName, lastName, emailId});
+    } catch (error) {
+        res.status(500).json({ message: "An error occurred while fetching the profile", error: error.message });
+    }
+}
+
+export  { login, signUp, logout, profile };  
