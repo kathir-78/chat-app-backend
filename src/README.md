@@ -8,6 +8,8 @@ here in the ES6 module
  - /auth/signUp 
  - /auth/logout 
 
+ - /user => getall the users
+
  1 - api level validation
  2 - schema level validation
 

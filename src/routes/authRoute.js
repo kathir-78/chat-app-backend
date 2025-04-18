@@ -1,21 +1,24 @@
 import express from 'express'
-import { login, logout, profile, signUp } from '../controllers/authController.js';
-import { validateUserCreation, validateUserLogin } from '../utils/validateUser.js';
+import { editProfile, login, logout, profile, signUp } from '../controllers/authController.js';
+import { validateEditUser, validateUserCreation, validateUserLogin } from '../utils/validateUser.js';
 import isAuthenticated from '../middleware/auth.js';
 
 
-const userRoute = express.Router()
+const authRoute = express.Router()
 
 // login router
-userRoute.post('/auth/login', validateUserLogin, login);
+authRoute.post('/auth/login', validateUserLogin, login);
 
 // signUp router
-userRoute.post('/auth/signup', validateUserCreation, signUp);
+authRoute.post('/auth/signup', validateUserCreation, signUp);
 
 // logout router
-userRoute.post('/auth/logout', logout);
+authRoute.post('/auth/logout', logout);
 
 // profile view
-userRoute.get('/user/profile', isAuthenticated, profile)
+authRoute.get('/user/profile', isAuthenticated, profile);
 
-export default userRoute
+// Edit profile
+authRoute.patch('/user/profile/edit', isAuthenticated, validateEditUser, editProfile);
+
+export default authRoute
