@@ -8,7 +8,13 @@ const getUsers= async (req, res) => {
 
         const skip = (page - 1) * limit;
 
-        const users = await userModel.find().skip(skip).limit(limit).select('-password -createdAt -updatedAt -__v');
+        const signedInUserId = req.user._id;
+
+        const users = await userModel.
+            find({ _id: { $ne: signedInUserId }})
+            .skip(skip)
+            .limit(limit)
+            .select('-password -createdAt -updatedAt -__v');
 
         res.status(200).json(users);
 
