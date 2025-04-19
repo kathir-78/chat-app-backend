@@ -10,6 +10,12 @@ here in the ES6 module
 
  - /user => getall the users
 
- 1 - api level validation
- 2 - schema level validation
+ - api level validation
+ - schema level validation
+
+ **aws pre-signedUrl**
+ - generate pre-signedUrl
+ - send it to the fronted
+ - once the fronted upload the object (image) to S3, send the URL to the server and the and the server store the URL in the database to the specified person
+
 

@@ -5,6 +5,7 @@ import connectDB from './config/configDb.js';
 import authRoute from './routes/authRoute.js';
 import userRoute from './routes/userRoute.js'
 import cors from 'cors'
+import awsRouter from './routes/awsRoute.js';
 
 const app = express();
 app.use(cors({
@@ -19,6 +20,7 @@ app.use(cookieParser());
 
 app.use('/', authRoute);
 app.use('/', userRoute);
+app.use('/', awsRouter);
 
 connectDB()
     .then( ()=> {
