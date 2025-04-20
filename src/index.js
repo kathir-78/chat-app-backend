@@ -6,6 +6,8 @@ import authRoute from './routes/authRoute.js';
 import userRoute from './routes/userRoute.js'
 import cors from 'cors'
 import awsRouter from './routes/awsRoute.js';
+import { createServer } from 'http';
+import initializeSocket from './utils/webSocket.js';
 
 const app = express();
 app.use(cors({
@@ -16,15 +18,17 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// app.use('/', (req, res)=> {res.send('welcome')});
-
 app.use('/', authRoute);
 app.use('/', userRoute);
 app.use('/', awsRouter);
 
+const server = createServer(app);
+initializeSocket(server)
+
+
 connectDB()
     .then( ()=> {
-        app.listen(process.env.PORT,
+        server.listen(process.env.PORT,
             ()=> console.log(`Server is successfully listening on port ${process.env.PORT}`)
         );
     })

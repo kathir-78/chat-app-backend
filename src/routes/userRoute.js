@@ -7,5 +7,4 @@ const userRoute = express.Router();
 // get all the users
 userRoute.get('/user', isAuthenticated, getUsers);
 
-
 export default userRoute;

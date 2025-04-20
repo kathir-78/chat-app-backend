@@ -22,13 +22,13 @@ const login =  async(req, res) => {
 
         const jwttoken = jwt.sign({FirstName: userData.firstName, emailId: userData.emailId, id: userData._id}, process.env.JWT_SECRETE_KEY, {expiresIn: '7d'});
 
-        const {firstName, lastName, imageUrl, about, gender} = userData;
+        const {firstName, lastName, imageUrl, about, gender, _id} = userData;
         res.status(200)
             .clearCookie("token")
             .cookie("token", jwttoken, 
                 { expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
                 httpOnly: true})
-            .json({firstName, lastName, imageUrl, about, gender});
+            .json({firstName, lastName, imageUrl, about, gender, _id});
 
     } catch (error) {
         res.status(500).send(error.message)
@@ -67,9 +67,9 @@ const login =  async(req, res) => {
 //view profile
 const profile = async(req, res) => {
     try {
-        const { firstName, lastName,  imageUrl, about, gender } = req.user;
+        const { firstName, lastName,  imageUrl, about, gender ,_id } = req.user;
 
-        res.status(200).json({firstName, lastName, imageUrl, about, gender});
+        res.status(200).json({firstName, lastName, imageUrl, about, gender,_id });
     } catch (error) {
         res.status(500).json({ message: "An error occurred while fetching the profile", error: error.message });
     }
