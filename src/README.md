@@ -26,3 +26,9 @@ here in the ES6 module
 - Integrate WebSocket (Socket.IO) into the HTTP server to handle real-time communication.
 - Create the Socket.IO server.
 - Use events to emit and listen for messages in Socket.IO.
+
+
+### Chat Model
+**chat**
+- chatschema with two fields where participants will be array of user with objectId and messages array of message object
+- message will have two fields senderId it contains object_id and the text message sended by that user
