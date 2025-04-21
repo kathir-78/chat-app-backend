@@ -28,7 +28,7 @@ here in the ES6 module
 - Use events to emit and listen for messages in Socket.IO.
 
 
-### Chat Model
-**chat**
-- chatschema with two fields where participants will be array of user with objectId and messages array of message object
-- message will have two fields senderId it contains object_id and the text message sended by that user
+### Chat Schema
+- chatschema with two fields where participants will be array of user with objectId and messages array of message object.
+- message will have two fields senderId it contains object_id and the text message sended by that user.
+- By the schema design we can easily scale-up the users and separate the message schema.

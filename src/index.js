@@ -8,6 +8,7 @@ import cors from 'cors'
 import awsRouter from './routes/awsRoute.js';
 import { createServer } from 'http';
 import initializeSocket from './utils/webSocket.js';
+import chatRoute from './routes/chatRoute.js';
 
 const app = express();
 app.use(cors({
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use('/', authRoute);
 app.use('/', userRoute);
 app.use('/', awsRouter);
+app.use('/', chatRoute)
 
 const server = createServer(app);
 initializeSocket(server)
